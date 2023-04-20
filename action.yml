@@ -4,9 +4,11 @@ inputs:
   ruby_version:
     description: 'Ruby Version'
     required: true
+    default: ${{ env.RUBY_VERSION }}
   node_version:
     description: 'Node Version'
     required: true
+    default: ${{ env.NODE_VERSION }}
   command:
     description: 'Command to run'
     required: true
@@ -15,14 +17,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2.0.0
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 1
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
         ruby-version: ${{ inputs.ruby_version }}
-    - uses: actions/setup-node@v1
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ inputs.node_version }}
     - name: Get npm cache directory path
