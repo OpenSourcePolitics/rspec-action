@@ -15,6 +15,10 @@ This action runs [RSpec](https://rspec.info/) tests.
   - description: 'Command to run'
   - required: true
   - default: 'bundle exec rspec'
+- prepare_command:
+  - description: 'Command to run before rspec'
+  - required: true
+  - default: 'bundle exec rake test_app'
 
 ## Example usage
     
@@ -30,4 +34,13 @@ To exclude system tests, you can use the following command:
   uses: OpenSourcePolitics/decidim-action-rspec@master
   with:
     command: 'bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"'
+```
+
+To use in an app that doesn't require a test_app, you can use the following command:
+
+```yaml
+- name: Run RSpec
+  uses: OpenSourcePolitics/decidim-action-rspec@master
+  with:
+    prepare_command: 'bundle exec rails db:create db:migrate'
 ```

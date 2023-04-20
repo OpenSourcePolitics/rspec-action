@@ -13,7 +13,7 @@ inputs:
     default: 'bundle exec rspec'
   prepare_command:
     description: 'Command to run before rspec'
-    required: false
+    required: true
     default: 'bundle exec rake test_app'
 
 runs:
