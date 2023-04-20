@@ -3,12 +3,10 @@ description: 'Run RSpec tests'
 inputs:
   ruby_version:
     description: 'Ruby Version'
-    required: true
-    default: ${{ env.RUBY_VERSION }}
+    required: false
   node_version:
     description: 'Node Version'
-    required: true
-    default: ${{ env.NODE_VERSION }}
+    required: false
   command:
     description: 'Command to run'
     required: true
@@ -23,10 +21,10 @@ runs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true
-        ruby-version: ${{ inputs.ruby_version }}
+        ruby-version: ${{ inputs.ruby_version || env.RUBY_VERSION }}
     - uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.node_version }}
+        node-version: ${{ inputs.node_version || env.NODE_VERSION }}
     - name: Get npm cache directory path
       id: npm-cache-dir-path
       run: echo "::set-output name=dir::$(npm get cache)-cleaner"
