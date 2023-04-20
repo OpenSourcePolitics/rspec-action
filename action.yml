@@ -11,6 +11,10 @@ inputs:
     description: 'Command to run'
     required: true
     default: 'bundle exec rspec'
+  prepare_command:
+    description: 'Command to run before rspec'
+    required: false
+    default: 'bundle exec rake test_app'
 
 runs:
   using: "composite"
@@ -36,7 +40,7 @@ runs:
         key: npm-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           npm-
-    - run: bundle exec rake test_app
+    - run: ${{ inputs.prepare_command }}
       name: Create test app
       shell: bash
     - run: mkdir -p ./spec/decidim_dummy_app/tmp/screenshots
