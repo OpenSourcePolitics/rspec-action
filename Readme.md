@@ -24,14 +24,14 @@ This action runs [RSpec](https://rspec.info/) tests.
     
 ```yaml
 - name: Run RSpec
-  uses: OpenSourcePolitics/decidim-action-rspec@master
+  uses: OpenSourcePolitics/rspec-action@master
 ```
 
 To exclude system tests, you can use the following command:
 
 ```yaml
 - name: Run RSpec
-  uses: OpenSourcePolitics/decidim-action-rspec@master
+  uses: OpenSourcePolitics/rspec-action@master
   with:
     command: 'bundle exec rspec --exclude-pattern "spec/system/**/*_spec.rb"'
 ```
@@ -40,7 +40,7 @@ To use in an app that doesn't require a test_app, you can use the following comm
 
 ```yaml
 - name: Run RSpec
-  uses: OpenSourcePolitics/decidim-action-rspec@master
+  uses: OpenSourcePolitics/rspec-action@master
   with:
     prepare_command: 'bundle exec rails db:create db:migrate'
 ```
